@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import firebase from 'firebase';
+import { v4 as uuid } from 'uuid';
 // Other
 import { selectCameraImage, resetCameraImage } from '../../features/cameraSlice';
+import { storage, db } from '../../database/firebase';
 // Icons
 import CloseIcon from '@material-ui/icons/Close';
 import SendIcon from '@material-ui/icons/Send';
-
 // Styles
 import './Preview.scss';
 
@@ -19,15 +21,42 @@ function Preview() {
     if (!selectImage) {
       history.replace('/');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectImage]);
+  }, [history, selectImage]);
 
   const onClose = () => {
     dispatch(resetCameraImage());
   }
 
   const onSendPost = () => {
-    console.log('object')
+    const id = uuid();
+    const uploadTask = storage
+      .ref(`screens/${id}`)
+      .putString(selectImage, 'data_url');
+
+    uploadTask.on(
+      'state_changed',
+      null,
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref('screens')
+          .child(id)
+          .getDownloadURL()
+          .then((downloadURL) => {
+            db
+              .collection('screens')
+              .add({
+                imageUrl: downloadURL,
+                username: 'Beliy test',
+                read: false,
+                profilePic: 'test',
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+              });
+            // history.replace('/screens');
+          })
+      });
   }
 
   return (
