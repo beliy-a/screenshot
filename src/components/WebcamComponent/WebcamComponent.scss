@@ -1,0 +1,15 @@
+@import '../../scss/abstracts/variables';
+
+.webcamComponent {
+    position: relative;
+
+    &__icon {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        color: $color-default;
+        font-size: 3.5rem !important;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+}

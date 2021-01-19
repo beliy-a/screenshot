@@ -4,4 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &__body {
+    width: 250px;
+    height: 400px;
+    overflow: hidden;
+    background-color: red; // temp
+  }
 }

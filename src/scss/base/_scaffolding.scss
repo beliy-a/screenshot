@@ -2,6 +2,7 @@
 ::after,
 * {
     margin: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -10,7 +11,8 @@ html {
 
 body {
     font-size: 1.5rem;
-    background-color: $default-color;
+    background-color: $color-default;
+    color: $color-text;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
