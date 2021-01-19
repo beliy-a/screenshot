@@ -8,6 +8,7 @@ import {
 // Components
 import WebcamComponent from '../WebcamComponent';
 import Preview from '../Preview';
+import Screens from '../Screens';
 // Styles
 import './ScreenshotApp.scss';
 
@@ -22,6 +23,10 @@ function ScreenshotApp() {
 
           <Route path="/preview">
             <Preview />
+          </Route>
+
+          <Route path="/screens">
+            <Screens />
           </Route>
 
         </Switch>
