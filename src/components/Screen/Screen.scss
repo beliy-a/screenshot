@@ -1,0 +1,32 @@
+.screen {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid whitesmoke;
+    cursor: pointer;
+    transition: .15s linear;
+    &:hover {
+        opacity: 0.8;
+    }
+    &__avatar {
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+    }
+    &__info {
+        flex: 1;
+        padding-left: 5px;
+        > h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        > p {
+            font-size: .9rem;
+        }
+    }
+    &__stopIcon {
+        color: #ed3b55;
+        font-size: 2rem !important;
+    }
+
+}

@@ -54,7 +54,7 @@ function Preview() {
                 profilePic: 'test',
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               });
-            // history.replace('/screens');
+            history.replace('/screens');
           })
       });
   }

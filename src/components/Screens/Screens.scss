@@ -1,0 +1,37 @@
+@import '../../scss/abstracts/variables';
+
+.screens {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    &__header {
+        height: 50px;
+        background-color: $color-secondary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__avatar {
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+
+    &__body {
+        flex: 1;
+        background-color: $color-default;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        margin-top: -7px;
+        box-shadow: 1px -7px 7px -6px rgba(0, 0, 0, 0.44);
+        overflow-y: scroll;
+
+        -ms-overflow-style: none; /* for IE and Edge*/
+        scrollbar-width: none; /* for Firefox*/
+    }
+
+    &__body::-webkit-scrollbar {
+        display: none;
+    }
+}
