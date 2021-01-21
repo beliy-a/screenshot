@@ -1,7 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 // Components
 import { Button } from '@material-ui/core';
+
+// Other
+import { auth, provider } from '../../database/firebase';
+import { login } from '../../features/userSlice';
 
 // Styles
 import './Login.scss';
@@ -10,6 +15,23 @@ import ScreenLogo from '../../assets/Screenshot_logo.png';
 
 
 function Login() {
+  const dispatch = useDispatch();
+
+  const onLogin = () => {
+    auth()
+      .signInWithPopup(provider)
+      .then(({ user }) => {
+        const currentUser = {
+          username: user.displayName,
+          profilePic: user.photoURL,
+          id: user.id
+        };
+
+        dispatch(login(currentUser));
+      })
+      .catch((error) => console.log(error.message));
+  }
+
   return (
     <div className="login">
       <div className="login__container">
@@ -20,6 +42,7 @@ function Login() {
         <Button
           size="large"
           variant="contained"
+          onClick={onLogin}
         >Sign In</Button>
       </div>
 

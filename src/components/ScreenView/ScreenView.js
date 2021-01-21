@@ -26,7 +26,6 @@ function ScreenView() {
     if (!selectImage) {
       exit()
     }
-    console.log(counter);
   }, [exit, selectImage])
 
   return (
