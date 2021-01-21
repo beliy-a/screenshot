@@ -12,7 +12,7 @@ import './Screens.scss';
 function Screens() {
   const [screens, setScreens] = useState([])
 
-  useEffect(() => {
+  let fetchData = () => {
     db
       .collection('screens')
       .orderBy('timestamp', 'desc')
@@ -20,10 +20,18 @@ function Screens() {
         const screensFromDb = snapshot.docs.map(doc => ({
           id: doc.id,
           data: doc.data()
-        }))
+        }));
 
         setScreens(screensFromDb);
       });
+  }
+
+  useEffect(() => {
+    fetchData();
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      fetchData = null;
+    }
   }, [])
 
   return (

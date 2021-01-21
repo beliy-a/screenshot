@@ -28,7 +28,7 @@ function WebcamComponent() {
       dispatch(setCameraImage(imageSrc));
       history.push('/preview');
     },
-    [webcamRef]
+    [dispatch, history]
   );
 
   return (

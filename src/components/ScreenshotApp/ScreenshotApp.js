@@ -4,11 +4,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
 // Components
 import WebcamComponent from '../WebcamComponent';
 import Preview from '../Preview';
 import Screens from '../Screens';
+import ScreenView from '../ScreenView';
 // Styles
 import './ScreenshotApp.scss';
 
@@ -27,6 +27,10 @@ function ScreenshotApp() {
 
           <Route path="/screens">
             <Screens />
+          </Route>
+
+          <Route path="/screen/view">
+            <ScreenView />
           </Route>
 
         </Switch>

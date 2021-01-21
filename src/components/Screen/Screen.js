@@ -34,7 +34,7 @@ function Screen({ id, timestamp, username, imageUrl, read, profilePic }) {
 
   return (
     <div onClick={openScreen} className="screen">
-      <Avatar className="screen__avatar" />
+      <Avatar className="screen__avatar" src={profilePic} />
       <div className="screen__info">
         <h4>{username}</h4>
         <p>
