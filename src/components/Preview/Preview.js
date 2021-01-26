@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { v4 as uuid } from 'uuid';
 // Other
 import { selectCameraImage, resetCameraImage } from '../../features/cameraSlice';
+import { selectUser } from '../../features/userSlice';
 import { storage, db } from '../../database/firebase';
 // Icons
 import CloseIcon from '@material-ui/icons/Close';
@@ -16,6 +17,7 @@ function Preview() {
   const selectImage = useSelector(selectCameraImage);
   const history = useHistory();
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     if (!selectImage) {
@@ -49,9 +51,9 @@ function Preview() {
               .collection('screens')
               .add({
                 imageUrl: downloadURL,
-                username: 'Beliy test',
+                username: user.username,
                 read: false,
-                profilePic: 'test',
+                profilePic: user.profilePic,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
               });
             history.replace('/screens');
