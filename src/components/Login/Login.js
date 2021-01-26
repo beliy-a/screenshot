@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // Components
 import { Button } from '@material-ui/core';
@@ -16,6 +17,7 @@ import ScreenLogo from '../../assets/Screenshot_logo.png';
 
 function Login() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onLogin = () => {
     auth()
@@ -29,7 +31,10 @@ function Login() {
 
         dispatch(login(currentUser));
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        history.replace('/');
+        console.log(error.message);
+      });
   }
 
   return (
