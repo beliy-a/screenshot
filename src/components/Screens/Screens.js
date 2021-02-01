@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
+import { useSelector, useDispatch } from 'react-redux';
 // Other
-import { db } from '../../database/firebase';
+import { db, auth } from '../../database/firebase';
+import { selectUser, logout } from '../../features/userSlice';
 
 // Components
 import Screen from '../Screen';
@@ -11,6 +12,8 @@ import './Screens.scss';
 
 function Screens() {
   const [screens, setScreens] = useState([])
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   let fetchData = () => {
     db
@@ -26,8 +29,19 @@ function Screens() {
       });
   }
 
+  const onSignOut = () => {
+    auth()
+      .signOut()
+      .then(() => {
+        console.log('Sign-out successful');
+        dispatch(logout());
+      })
+      .catch((error) => console.log(error.message));
+  }
+
   useEffect(() => {
     fetchData();
+
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       fetchData = null;
@@ -37,7 +51,11 @@ function Screens() {
   return (
     <div className="screens">
       <div className="screens__header">
-        <Avatar className="screens__avatar" />
+        <Avatar
+          className="screens__avatar"
+          src={user.profilePic}
+          onClick={onSignOut}
+        />
       </div>
 
       <div className="screens__body">
