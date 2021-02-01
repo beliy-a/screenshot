@@ -36,7 +36,9 @@ function App() {
         :
         (
           <div className="app__body">
-            <ScreenshotApp />
+            <div className="app__bodyBackground">
+              <ScreenshotApp />
+            </div>
           </div>
         )
       }

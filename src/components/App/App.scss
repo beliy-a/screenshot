@@ -5,9 +5,12 @@
   justify-content: center;
   align-items: center;
 
-  &__body {
-    width: 250px;
+  &__bodyBackground {
+    background: url(../../assets/mobile.png) no-repeat center;
+    background-size: contain;
     height: 400px;
-    background-color: red; // temp
+    width: 250px;
+    padding: 72px;
+    box-sizing: content-box;
   }
 }
