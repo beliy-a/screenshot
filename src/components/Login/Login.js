@@ -32,7 +32,6 @@ function Login() {
         dispatch(login(currentUser));
       })
       .catch((error) => {
-        history.replace('/');
         console.log(error.message);
       });
   }
